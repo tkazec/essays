@@ -17,10 +17,13 @@ What followed was quite a lot of fiddling around and experimenting. One of the h
 Lacking much space for sequencing or interactivity, adding randomness was an affordable way to make the fireworks prettier and more interesting. Almost every variable is randomized to some degree, including the colors which are taken from a list of 6 simple "love"-y hues.
 
 *Minification*
+I'd already had some previous experience with minifying small JavaScript demos; back in 2010 I wrote a fully-featured tower defense game (http://canvas-td.tkaz.ec) for 10k Apart, which took a day or so to barely scrape under the 10240 byte limit. Fortunately with Firehearts I was able to run Closure Compiler in advanced mode, which has a lot of tricks up its sleeves and can actually rewrite code. Combined with aliasing the most used math functions, it ended up being relatively easy to get down to 1009 bytes (was 1285 before math aliasing).
 
 *Packing*
+That was all a month or so ago, now back to the present. A couple days ago, I found out how effective "packers"—programs that perform magic on your code, turning it into an ultracompressed string that is later eval()'d—really are: First Crush (http://js1k.com/2012-love/demo/1189) immediately saved around 200 bytes, with no changes required.
 
 *Interactivity*
+Once I realized how much available space there suddenly was, I decided to add some interactivity, something I'd been wanting to do but previously had no room for. Adding click-to-burst was simple, as it only required adding an onclick handler and duplicating the random burst code (packers love duplications). ...
 
 -----
 
