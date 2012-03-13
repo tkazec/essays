@@ -1,6 +1,6 @@
 *Creating Firehearts*
 
-_js1k is a competition to create cool demos in no more than 1024 bytes of JavaScript. This post is about how I created my entry for their Love '12 contest. Check it out here: http://js1k.com/2012-love/demo/1074_
+_js1k is a competition to create cool demos in no more than 1024 bytes of JavaScript. This post is about how I created my entry for their Love '12 contest. Check it out here: http://js1k.com/2012-love/demo/1252_
 
 For a while I'd been wanting to enter a js1k competition, but could never think of a good demo idea. However, when their latest one was announced with the theme of "Love", I remembered something else I'd been wanting to do for a while—fireworks in JavaScript. Adding a love component was an obvious step and so, having decided, I started work on it.
 
@@ -8,15 +8,19 @@ For a while I'd been wanting to enter a js1k competition, but could never think 
 Fortunately for me, back in summer 2011, jsdo.it hosted a fireworks competition (http://jsdo.it/event/html5hanabi) and kindly provided a very nice sample. I took that and proceeded to pull out various unnecessary and/or unused components, including the DOM stuff, the tiny requestAnimationFrame() shim, and the firework settings (which I then hardcoded). This ended up reducing the unminified character count from about 4k to 1k: https://github.com/tkazec/demos/blob/2dba610b9b8ae847f0eb58d9014ecaf17c02fa84/2012-love.js
 
 *Hearts*
-Now I had a nice base... But all it generated was boring normal fireworks. Time for some hearts! Not satisfied with the normal unicode ones, I found a nice design in another entry (http://js1k.com/2012-love/demo/1047). Throwing it in was fairly simple; I just put it in its own function, removed some unnecessary code, added scaling, and replaced arc() with heart() in render(). Total demo size at that point: 650 bytes when minified with Closure Compiler in advanced mode.
+Now I had a nice base... But all it generated was boring normal fireworks. Time for some hearts! Not satisfied with the normal unicode ones, I found a nice design in another entry (http://js1k.com/2012-love/demo/1047). After pulling out some unnecessary code and adding scaling, it was a drop in replacement for the circles.
 
 *Tweaks*
-What followed was quite a lot of fiddling around and experimenting. One of the hardest parts of development was figuring out the burst queuing, but I eventually ended up with a nice process: Generate 1-5 bursts with a delay of up to 180 frames, wait for both the firework count and queue to empty, then repeat.
-I also ended up re-adding the tiny rAF() shim once I realized I had enough space left. While not entirely necessary, it provided a major increase in smoothness.
+What followed was quite a lot of fiddling around and experimenting. One of the hardest parts of development was figuring out the burst queuing, but I eventually figured out a nice and simple solution. I also ended up re-adding the tiny rAF() shim once I realized I had enough space left. While not entirely necessary, it provided a major increase in smoothness.
 
 *Randomness*
+Lacking much space for sequencing or interactivity, adding randomness was an affordable way to make the fireworks prettier and more interesting. Almost every variable is randomized to some degree, including the colors which are taken from a list of 6 simple "love"-y hues.
 
 *Minification*
+
+*Packing*
+
+*Interactivity*
 
 -----
 
