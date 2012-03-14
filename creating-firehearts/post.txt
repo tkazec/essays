@@ -1,6 +1,6 @@
 *Creating Firehearts*
 
-_js1k is a competition to create cool demos in no more than 1024 bytes of JavaScript. This post is about how I created my entry for their Love '12 contest. Check it out here: http://js1k.com/2012-love/demo/1252_
+_#js1k is a competition to create cool demos in no more than 1024 bytes of JavaScript. This post is about how I created my entry for their Love '12 contest. Check it out at http://js1k.com/2012-love/demo/1252 !_
 
 For a while I'd been wanting to enter a js1k competition, but could never think of a good demo idea. However, when their latest one was announced with the theme of "Love", I remembered something else I'd been wanting to do for a while—fireworks in JavaScript. Adding a love component was an obvious step and so, having decided, I started work on it.
 
@@ -30,4 +30,4 @@ I'm pretty happy with the way it all turned out. Some more interactivity (enter 
 
 -----
 
-_Discuss Firehearts and this post on Hacker News: http://news.ycombinator.com/item?id=3698543_
+_Discuss Firehearts and this post on Hacker News: http://news.ycombinator.com/item?id=3698543 ._
