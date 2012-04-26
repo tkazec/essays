@@ -1,0 +1,25 @@
+extends global
+
+append head
+	title #{title}
+	link(rel="stylesheet", href="../global.css")
+
+block content
+	tweet = "text=" + encodeURIComponent(title) + "&url=" + encodeURIComponent("http://essays.tkaz.ec/" + name) + "&via=tkazec"
+	
+	h1 #{title}
+	!{html}
+	hr
+	p#footer
+		| Published on #{day}.
+		br
+		if hackernews
+			| Hash out on 
+			a(href="http://news.ycombinator.com/item?id=#{hackernews}", target="_blank") Hacker News
+			|  § 
+		if googleplus
+			| Form ripples on 
+			a(href="https://plus.google.com/#{googleplus}", target="_blank") Google+
+			|  § 
+		| Chirp about on 
+		a(href="https://twitter.com/intent/tweet?#{tweet}", target="_blank") Twitter

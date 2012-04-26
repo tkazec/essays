@@ -1,5 +1,3 @@
-*Why using anchors as buttons sucks*
-
 So let's say you're an awesome web developer making an awesome web app. One day, you add a link in the web app that has an event handler instead of an href. Testing it, you realize that your cursor doesn't change when hovering over it, unlike a normal link. You think for a minute and then give it a cursor:pointer style, which fixes the issue. You are happy.
 
 The next day, QA informs you that the link cannot be tabbed to. Confused, you do some research and find a solution to the problem: Simply set the tabindex attribute to 0, which correctly adds the link into the tab flow. You are annoyed by the extra clutter, but otherwise happy.
@@ -19,8 +17,14 @@ You proceed to ragequit your job, move to India, and become a monk.
 
 You are happy.
 
------
+<ul class="thumbnails thumbnails-centered">
+	<li class="span6">
+		<div class="thumbnail">
+			<img src="wat.jpg" alt="Wat">
+		</div>
+	</li>
+</ul>
 
-_Fortunately it seems that buttons can contain block-level content, like anchors can in HTML5._
+*Fortunately it seems that buttons can contain block-level content, like anchors can in HTML5.*
 
-_This research was prompted by some discussion in a Bootstrap pull request (https://github.com/twitter/bootstrap/pull/1447) and then attempts to solve the problem in some personal projects. I have not succeeded. If anyone knows of a good solution, you get +9001 internets and the knowledge that you may have prevented a murderous rampage._
+*This research was prompted by some discussion in a [Bootstrap pull request](https://github.com/twitter/bootstrap/pull/1447) and then attempts to solve the problem in some personal projects. I have not succeeded. If anyone knows of a good solution, you get +9001 internets and the knowledge that you may have prevented a murderous rampage.*
