@@ -1,7 +1,7 @@
-var jade = require("jade");
-var marked = require("marked");
+var jade = require("jade"),
+	marked = require("marked");
 
-module.exports = function (grunt) {
+module.exports = function (grunt) { "use strict";
 
 /*** config ***/
 grunt.initConfig({
@@ -35,7 +35,7 @@ grunt.registerHelper("list", function () {
 		
 		return obj;
 	}).sort(function (a, b) {
-		return a.date > b.date;
+		return a.date < b.date;
 	});
 });
 

@@ -5,6 +5,17 @@ append head
 	link(rel="stylesheet", href="global.css")
 
 block content
-	ul
+	h1 Essays 
+		small by 
+			a(href="https://twitter.com/tkazec") @tkazec
+	dl.dl-horizontal
 		each essay in list
-			li: a(href="#{essay.name}"): #{essay.title}
+			dt #{essay.date}
+			dd: a(href="#{essay.name}"): #{essay.title}
+	hr
+	p
+		| © 2012 Teddy Cross, shared under the 
+		a(href="http://creativecommons.org/licenses/by/3.0/") CC BY 3.0
+		| . Sources released 
+		a(href="https://github.com/tkazec/essays") on GitHub
+		| .
