@@ -1,9 +1,9 @@
+module.exports = function (grunt) { "use strict";
+
+/*** setup ***/
 var jade = require("jade"),
 	marked = require("marked");
 
-module.exports = function (grunt) { "use strict";
-
-/*** config ***/
 grunt.initConfig({
 	meta: {
 		essays: "!(tmpl|dist)",
@@ -20,6 +20,10 @@ grunt.initConfig({
 				compress: true
 			}
 		}
+	},
+	watch: {
+		files: "./!(dist)/*",
+		tasks: "default"
 	}
 });
 
