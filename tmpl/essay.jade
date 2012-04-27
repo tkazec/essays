@@ -1,6 +1,6 @@
 extends global
 
-append head
+block head
 	title #{title}
 	link(rel="stylesheet", href="../global.css")
 
@@ -21,5 +21,5 @@ block content
 			| Form ripples on 
 			a(href="https://plus.google.com/#{googleplus}", target="_blank") Google+
 			|  § 
-		| Chirp about on 
+		| Chirp around on 
 		a(href="https://twitter.com/intent/tweet?#{tweet}", target="_blank") Twitter
