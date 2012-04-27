@@ -48,9 +48,10 @@ grunt.registerHelper("list", function () {
 grunt.loadTasks("tmpl/node_modules/grunt-clean/tasks");
 grunt.loadTasks("tmpl/node_modules/grunt-less/tasks");
 
-grunt.registerTask("index", "Generates the index", function () {
+grunt.registerTask("index", "Generates the index.", function (gaid) {
 	jade.renderFile("tmpl/index.jade", {
-		list: grunt.helper("list")
+		list: grunt.helper("list"),
+		gaid: gaid
 	}, function (err, str) {
 		err && grunt.fatal(err);
 		
@@ -58,8 +59,9 @@ grunt.registerTask("index", "Generates the index", function () {
 	});
 });
 
-grunt.registerTask("essays", "Copies and generates essay files", function () {
+grunt.registerTask("essays", "Copies and generates essay files.", function (gaid) {
 	grunt.helper("list").forEach(function (essay) {
+		essay.gaid = gaid;
 		essay.html = marked(grunt.file.read(essay.path + "essay.md"));
 		
 		grunt.file.expandFiles(essay.path + grunt.config.get("meta.files")).forEach(function (file) {
@@ -74,8 +76,12 @@ grunt.registerTask("essays", "Copies and generates essay files", function () {
 	});
 });
 
-grunt.registerTask("readme", "Generates the README", function () {
+grunt.registerTask("readme", "Generates the README.", function () {
 	
+});
+
+grunt.registerTask("ga", "Default w/ Google Analytics.", function (gaid) {
+	grunt.task.run("clean less index:" + gaid + " essays:" + gaid);
 });
 
 grunt.registerTask("default", "clean less index essays");
