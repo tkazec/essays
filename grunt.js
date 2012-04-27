@@ -1,8 +1,8 @@
 module.exports = function (grunt) { "use strict";
 
 /*** setup ***/
-var jade = require("jade"),
-	marked = require("marked");
+var jade = require("./tmpl/node_modules/jade"),
+	marked = require("./tmpl/node_modules/marked");
 
 grunt.initConfig({
 	meta: {

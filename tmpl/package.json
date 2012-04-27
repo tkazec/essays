@@ -1,0 +1,10 @@
+{
+	"name": "ec.tkaz.essays",
+	"version": "0.0.0",
+	"dependencies": {
+		"grunt-clean": "0.1.0",
+		"grunt-less": "0.1.4",
+		"jade": "0.25.0",
+		"marked": "0.2.4-1"
+	}
+}
