@@ -26,20 +26,8 @@ Once I realized how much available space there suddenly was, I decided to add so
 ### Result
 I'm pretty happy with the way it all turned out. Some more interactivity (enter some text to display a sequence? record custom sequences?) would have been nice, but clearly impossible with the 1k limit. Maybe for something else... Anyway, if you'd like you can check out the [various commits](https://github.com/tkazec/demos). Thanks for reading!
 
-<!--<ul class="thumbnails">
-	<li class="span4">
-		<div class="thumbnail">
-			<img src="screenshot-1.png" alt="">
-		</div>
-	</li>
-	<li class="span4">
-		<div class="thumbnail">
-			<img src="screenshot-2.png" alt="">
-		</div>
-	</li>
-	<li class="span2">
-		<div class="thumbnail">
-			<img src="screenshot-3.png" alt="">
-		</div>
-	</li>
-</ul>-->
+<div class="images">
+	<img src="screenshot-1.png" height="150" alt="">
+	<img src="screenshot-2.png" height="150" alt="">
+	<img src="screenshot-3.png" height="150" alt="">
+</div>
