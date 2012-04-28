@@ -10,8 +10,10 @@ block content
 	h1 #{title}
 	!{html}
 	hr
-	p#footer
-		| Published on #{day}.
+	p#essay-info
+		| Published on #{day} by 
+		a(href="http://tkaz.ec") Teddy Cross
+		| .
 		br
 		if hackernews
 			| Hash out on 
@@ -23,3 +25,7 @@ block content
 			|  § 
 		| Chirp around on 
 		a(href="https://twitter.com/intent/tweet?#{tweet}", target="_blank") Twitter
+	p#essay-more
+		| › 
+		a(href="..") more essays
+		|  ‹
