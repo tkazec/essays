@@ -8,4 +8,4 @@ Contains various essays and their accompanying assets. Originally meant as a bac
 
 ---
 
-© 2012 [Teddy Cross](http://tkaz.ec), shared under the [CC BY 3.0](http://creativecommons.org/licenses/by/3.0/).
+© 2012 [Teddy Cross](http://tkaz.ec), shared under the [MIT](http://www.opensource.org/licenses/MIT) and [CC BY 3.0](http://creativecommons.org/licenses/by/3.0/).
