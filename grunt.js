@@ -5,10 +5,6 @@ var jade = require("./tmpl/node_modules/jade"),
 	marked = require("./tmpl/node_modules/marked");
 
 grunt.initConfig({
-	meta: {
-		essays: "!(tmpl|dist)",
-		files: "!(meta.json|essay.md)"
-	},
 	clean: {
 		folder: "dist"
 	},
@@ -30,10 +26,9 @@ grunt.initConfig({
 
 /*** helpers ***/
 grunt.registerHelper("list", function () {
-	return grunt.file.expandDirs(grunt.config.get("meta.essays")).map(function (path) {
+	return grunt.file.expandDirs("!(tmpl|dist)").map(function (path) {
 		var obj = grunt.file.readJSON(path + "meta.json");
 		
-		obj.path = path;
 		obj.name = path.replace("/", "");
 		obj.day = grunt.template.date(obj.date, "UTC:dddd, mmmm dS, yyyy");
 		obj.hackernews = obj.hackernews ? "http://news.ycombinator.com/item?id=" + obj.hackernews : null;
@@ -64,16 +59,16 @@ grunt.registerTask("index", "Generates the index.", function (gaid) {
 grunt.registerTask("essays", "Copies and generates essay files.", function (gaid) {
 	grunt.helper("list").forEach(function (essay) {
 		essay.gaid = gaid;
-		essay.html = marked(grunt.file.read(essay.path + "essay.md"));
+		essay.html = marked(grunt.file.read(essay.name + "/essay.md"));
 		
-		grunt.file.expandFiles(essay.path + grunt.config.get("meta.files")).forEach(function (file) {
+		grunt.file.expandFiles(essay.name + "/!(meta.json|essay.md)").forEach(function (file) {
 			grunt.file.copy(file, "dist/" + file);
 		});
 		
 		jade.renderFile("tmpl/essay.jade", essay, function (err, str) {
 			err && grunt.fatal(err);
 			
-			grunt.file.write("dist/" + essay.path + "index.html", str);
+			grunt.file.write("dist/" + essay.name + "/index.html", str);
 		});
 	});
 });
@@ -81,12 +76,10 @@ grunt.registerTask("essays", "Copies and generates essay files.", function (gaid
 grunt.registerTask("readme", "Generates the README.", function () {
 	var list = grunt.helper("list").map(function (essay) {
 		return grunt.template.process(
-			"* <%=date%> [<%=title%>](http://tkaz.ec/<%=name%>) (" +
-				(essay.hackernews ? " - [Hacker News](<%=hackernews%>)" : "") +
-				(essay.googleplus ? " - [Google+](<%=googleplus%>)" : "") +
-			")",
-			essay
-		);
+			"* <%=date%> \"[<%=title%>](http://tkaz.ec/<%=name%>)\"" +
+			(essay.hackernews ? " - [Hacker News](<%=hackernews%>)" : "") +
+			(essay.googleplus ? " - [Google+](<%=googleplus%>)" : ""),
+		essay);
 	}).join("\n");
 	
 	grunt.file.write("README.md", grunt.file.read("README.md").replace(/---(?:.|\s)+---/, "---\n\n" + list + "\n\n---"));
