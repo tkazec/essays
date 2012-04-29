@@ -79,13 +79,23 @@ grunt.registerTask("essays", "Copies and generates essay files.", function (gaid
 });
 
 grunt.registerTask("readme", "Generates the README.", function () {
+	var list = grunt.helper("list").map(function (essay) {
+		return grunt.template.process(
+			"* <%=date%> [<%=title%>](http://tkaz.ec/<%=name%>) (" +
+				(essay.hackernews ? " - [Hacker News](<%=hackernews%>)" : "") +
+				(essay.googleplus ? " - [Google+](<%=googleplus%>)" : "") +
+			")",
+			essay
+		);
+	}).join("\n");
 	
+	grunt.file.write("README.md", grunt.file.read("README.md").replace(/---(?:.|\s)+---/, "---\n\n" + list + "\n\n---"));
 });
 
 grunt.registerTask("ga", "Default w/ Google Analytics.", function (gaid) {
-	grunt.task.run("clean less index:" + gaid + " essays:" + gaid);
+	grunt.task.run("default", "index:" + gaid, "essays:" + gaid);
 });
 
-grunt.registerTask("default", "clean less index essays");
+grunt.registerTask("default", "clean less index essays readme");
 
 };
