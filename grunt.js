@@ -33,9 +33,11 @@ grunt.registerHelper("list", function () {
 	return grunt.file.expandDirs(grunt.config.get("meta.essays")).map(function (path) {
 		var obj = grunt.file.readJSON(path + "meta.json");
 		
-		obj.name = path.replace("/", "");
 		obj.path = path;
+		obj.name = path.replace("/", "");
 		obj.day = grunt.template.date(obj.date, "UTC:dddd, mmmm dS, yyyy");
+		obj.hackernews = obj.hackernews ? "http://news.ycombinator.com/item?id=" + obj.hackernews : null;
+		obj.googleplus = obj.googleplus ? "https://plus.google.com/" + obj.googleplus : null;
 		
 		return obj;
 	}).sort(function (a, b) {
