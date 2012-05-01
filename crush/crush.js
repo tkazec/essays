@@ -1,4 +1,5 @@
 var crush = function (code) {
+	/*** setup ***/
 	var M = code.length / 2;
 	
 	// Searches the input string for the best possible replacement
@@ -30,21 +31,27 @@ var crush = function (code) {
 		X = g;
 	};
 	
-	// Get all the characters in the character code range 1-127 that don't appear in str and aren't line breaks
+	
+	/*** 1 ***/
 	var free = [];
-	for (d = 1; d < 127; ++d) {
-		e = String.fromCharCode(d);
-		if (!/[\r\n'"\\]/.test(e) && !~code.indexOf(e)) {
-			free.push(e);
+	
+	// Get all the characters in the character code range 1-127 that don't appear in str and aren't line breaks
+	for (var i = 1; i < 127; ++i) {
+		var char = String.fromCharCode(i);
+		
+		if (!/[\r\n'"\\]/.test(char) && !~code.indexOf(char)) {
+			free.push(char);
 		}
 	}
 	
 	// Arrange characters so that control characters come last
 	free.sort(function(i, j) {
-		return i > j ? 1 : i < j ? -1 : 0;
+		return i > j ? 1 : (i < j ? -1 : 0);
 	});
 	
-	Z = "";
+	
+	/*** 2 ***/
+	var Z = "", Y;
 	
 	// Replace substrings with single characters while we still have free characters and worthwhile replacements
 	while ( (Y = free.pop()) && (B(code), X) ) {
@@ -52,9 +59,13 @@ var crush = function (code) {
 		Z = Y + Z;
 	}
 	
+	
+	/*** 3 ***/
 	// Get the most popular type of quote to minimize escaping in the output string
 	var quote = code.split("'").length < code.split('"').length ? "'" : '"';
 	
+	
+	/*** 4 ***/
 	// Create the output
 	return "f=" + quote + code.replace(/[\r\n\\]/g, "\\$&").replace(RegExp(quote, "g"), "\\" + quote) + quote + ";for(i in g=" + quote + Z + quote + ")e=f.split(g[i]),f=e.join(e.pop());eval(f)";
 };
