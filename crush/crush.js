@@ -32,7 +32,7 @@ var crush = function (code) {
 	};
 	
 	
-	/*** 1 ***/
+	/*** Step 1: Analyze ***/
 	var free = [];
 	
 	// Get all the characters in the character code range 1-127 that don't appear in str and aren't line breaks
@@ -50,7 +50,7 @@ var crush = function (code) {
 	});
 	
 	
-	/*** 2 ***/
+	/*** Step 2: Crush ***/
 	var Z = "", Y;
 	
 	// Replace substrings with single characters while we still have free characters and worthwhile replacements
@@ -60,7 +60,7 @@ var crush = function (code) {
 	}
 	
 	
-	/*** 3 ***/
+	/*** Step 3: Wrap up ***/
 	// Get the most popular type of quote to minimize escaping in the output string
 	var quote = code.split("'").length < code.split('"').length ? "'" : '"';
 	
