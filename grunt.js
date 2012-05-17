@@ -76,7 +76,7 @@ grunt.registerTask("essays", "Copies and generates essay files.", function (gaid
 grunt.registerTask("readme", "Generates the README.", function () {
 	var list = grunt.helper("list").map(function (essay) {
 		return grunt.template.process(
-			"* <%=date%> \"[<%=title%>](http://tkaz.ec/<%=name%>)\"" +
+			"* <%=date%> \"[<%=title%>](http://essays.tkaz.ec/<%=name%>)\"" +
 			(essay.hackernews ? " - [Hacker News](<%=hackernews%>)" : "") +
 			(essay.googleplus ? " - [Google+](<%=googleplus%>)" : ""),
 		essay);
