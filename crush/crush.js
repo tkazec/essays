@@ -3,7 +3,7 @@ var crush = function (code) {
 	var M = code.length / 2;
 	
 	// Searches the input string for the best possible replacement
-	var B = function (i) {
+	var search = function (i) {
 		g = t = u = 0, v = {};
 		
 		for (y = 2, z = M; y <= z; ++y) {
@@ -28,7 +28,7 @@ var crush = function (code) {
 			}
 		}
 		
-		X = g;
+		return g;
 	};
 	
 	
@@ -51,12 +51,12 @@ var crush = function (code) {
 	
 	
 	/*** Step 2: Crush ***/
-	var Z = "", Y;
+	var used = "", char, substr;
 	
 	// Replace substrings with single characters while we still have free characters and worthwhile replacements
-	while ( (Y = free.pop()) && (B(code), X) ) {
-		code = code.split(X).join(Y) + Y + X;
-		Z = Y + Z;
+	while ( (char = free.pop()) && (substr = search(code)) ) {
+		code = code.split(substr).join(char) + char + substr;
+		used = char + used;
 	}
 	
 	
@@ -67,19 +67,20 @@ var crush = function (code) {
 	// Create the output template, using actual code
 	var out = function () {
 		f="{code}";
-		for(i in g="{Z}")
-			e=f.split(g[i]),f=e.join(e.pop());
+		for(i in g="{used}")
+			e=f.split(g[i]),
+			f=e.join(e.pop());
 		eval(f)
 	};
 	
 	// Properly escape the crushed code
 	code = code.replace(/[\r\n\\]/g, "\\$&").replace(RegExp(quote, "g"), "\\" + quote);
 	
-	// Convert the output template to a string, replace bits accordingly, and return the final output
+	// Convert the output template to a string, replace bits accordingly, and return the final code
 	return out.toString()
-		.replace(/.+\{((?:.|\s)+)\}/, "$1") // Remove the function wrapper
-		.replace(/[\t\r\n]/g, "") // Remove tabs and newlines
-		.replace(/"/g, quote) // Use correct quotes
-		.split("{Z}").join(Z) // Insert <something>
-		.split("{code}").join(code); // Use split/join instead of replace to avoid replacement patterns!
+		.replace(/.+\{((?:.|\s)+)\}/, "$1")
+		.replace(/[\t\r\n]/g, "")
+		.replace(/"/g, quote)
+		.split("{used}").join(used)
+		.split("{code}").join(code);
 };
