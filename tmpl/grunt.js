@@ -1,8 +1,8 @@
 module.exports = function (grunt) { "use strict";
 
 /*** setup ***/
-var jade = require("./tmpl/node_modules/jade"),
-	marked = require("./tmpl/node_modules/marked");
+var jade = require("jade"),
+	marked = require("marked");
 
 grunt.initConfig({
 	clean: {
@@ -23,6 +23,11 @@ grunt.initConfig({
 	}
 });
 
+grunt.loadNpmTasks("grunt-clean");
+grunt.loadNpmTasks("grunt-less");
+
+grunt.file.setBase("..");
+
 
 /*** helpers ***/
 grunt.registerHelper("list", function () {
@@ -42,9 +47,6 @@ grunt.registerHelper("list", function () {
 
 
 /*** tasks ***/
-grunt.loadTasks("tmpl/node_modules/grunt-clean/tasks");
-grunt.loadTasks("tmpl/node_modules/grunt-less/tasks");
-
 grunt.registerTask("index", "Generates the index and copies the favicon.", function (gaid) {
 	jade.renderFile("tmpl/index.jade", {
 		list: grunt.helper("list"),
