@@ -45,7 +45,7 @@ grunt.registerHelper("list", function () {
 grunt.loadTasks("tmpl/node_modules/grunt-clean/tasks");
 grunt.loadTasks("tmpl/node_modules/grunt-less/tasks");
 
-grunt.registerTask("index", "Generates the index.", function (gaid) {
+grunt.registerTask("index", "Generates the index and copies the favicon.", function (gaid) {
 	jade.renderFile("tmpl/index.jade", {
 		list: grunt.helper("list"),
 		gaid: gaid
@@ -54,6 +54,8 @@ grunt.registerTask("index", "Generates the index.", function (gaid) {
 		
 		grunt.file.write("dist/index.html", str);
 	});
+	
+	grunt.file.copy("tmpl/favicon.ico", "dist/favicon.ico");
 });
 
 grunt.registerTask("essays", "Copies and generates essay files.", function (gaid) {
