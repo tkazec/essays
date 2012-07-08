@@ -14,7 +14,11 @@ I finished the first version the "normal" way—optimally structuring it, hand-a
 
 However, after looking around at the other entries (all 9001 of them), I realized that many of them were using crushers to great effect. Some of them were actually just crushers themselves.
 
-One of them, First Crush, is the topic of this essay.
+One of them is the topic of this essay.
+
+## First Crush
+
+
 
 ## 1. Analyze
 
