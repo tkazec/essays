@@ -2,9 +2,13 @@
 	"name": "ec.tkaz.essays",
 	"version": "0.0.0",
 	"dependencies": {
-		"grunt-clean": "0.2.1",
-		"grunt-less": "0.1.4",
-		"jade": "0.26.0",
-		"marked": "0.2.5"
-	}
+		"grunt-clean": "~0.3.0",
+		"grunt-less": "~0.1.5",
+		"jade": "~0.26.3",
+		"marked": "~0.2.5"
+	},
+	"engines": {
+		"node": "~0.8"
+	},
+	"private": true
 }
