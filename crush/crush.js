@@ -1,6 +1,16 @@
 var crush = function (code) {
-	/*** setup ***/
+	/*** Step 1: Analyze ***/
 	var M = code.length / 2;
+	var free = [];
+	
+	// Get all the characters in the character code range 1-127 that don't appear in `code` and aren't line breaks
+	for (var i = 1; i < 127; ++i) {
+		var chr = String.fromCharCode(i);
+		
+		if (!/[\r\n'"\\]/.test(chr) && !~code.indexOf(chr)) {
+			free.push(chr);
+		}
+	}
 	
 	// Searches the input string for the best possible replacement
 	var search = function (i) {
@@ -32,31 +42,15 @@ var crush = function (code) {
 	};
 	
 	
-	/*** Step 1: Analyze ***/
-	var free = [];
-	
-	// Get all the characters in the character code range 1-127 that don't appear in str and aren't line breaks
-	for (var i = 1; i < 127; ++i) {
-		var char = String.fromCharCode(i);
-		
-		if (!/[\r\n'"\\]/.test(char) && !~code.indexOf(char)) {
-			free.push(char);
-		}
-	}
-	
-	// Arrange characters so that control characters come last
-	free.sort(function(i, j) {
-		return i > j ? 1 : (i < j ? -1 : 0);
-	});
-	
-	
 	/*** Step 2: Crush ***/
-	var used = "", char, substr;
+	var used = "";
+	var chr;
+	var substr;
 	
 	// Replace substrings with single characters while we still have free characters and worthwhile replacements
-	while ( (char = free.pop()) && (substr = search(code)) ) {
-		code = code.split(substr).join(char) + char + substr;
-		used = char + used;
+	while ((chr = free.pop()) && (substr = search(code))) {
+		code = code.split(substr).join(chr) + chr + substr;
+		used = chr + used;
 	}
 	
 	
