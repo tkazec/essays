@@ -14,31 +14,38 @@ var crush = function (code) {
 	
 	// Searches the input string for the best possible replacement
 	var search = function (i) {
-		g = t = u = 0, v = {};
+		var best = false;
+		var strs = {};
+		var best_savings = 0;
+		var best_count = 0;
 		
-		for (y = 2, z = M; y <= z; ++y) {
+		for (var y = 2, z = M; y <= z; ++y) {
 			for (h = 0, l = i.length - y; h < l; ++h) {
-				if (!v[e = i.substr(h, y)]) {
-					for (v[e] = 1, f = h; ~(f = i.indexOf(e, f + y)); ) {
-						v[e]++;
+				if (!strs[e = i.substr(h, y)]) {
+					for (strs[e] = 1, f = h; ~(f = i.indexOf(e, f + y)); ) {
+						strs[e]++;
 						M = y;
 					}
 				}
 			}
 		}
 		
-		for (e in v) {
-			if ( (j = v[e]) > 1) {
-				s = G(e) * (j - 1) - j - 2;
-				if (s > t || (s == t && j < u) ) {
-					t = s;
-					u = j;
-					g = e;
+		for (var sub in strs) {
+			var count = strs[sub];
+			
+			if (count > 1) {
+				var bytes = unescape(encodeURI(sub)).length;
+				var savings = (bytes * (count - 1)) - count - 2;
+				
+				if (savings > best_savings || (savings == best_savings && count < best_count)) {
+					best_savings = savings;
+					best_count = count;
+					best = sub;
 				}
 			}
 		}
 		
-		return g;
+		return best;
 	};
 	
 	
@@ -58,7 +65,7 @@ var crush = function (code) {
 	// Get the most popular type of quote to minimize escaping in the output string
 	var quote = code.split("'").length < code.split('"').length ? "'" : '"';
 	
-	// Create the output template, using actual code
+	// Create the output template with actual code
 	var out = function () {
 		f="{code}";
 		for(i in g="{used}")
