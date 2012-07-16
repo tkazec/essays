@@ -37,7 +37,7 @@ var crush = function (code) {
 				var bytes = unescape(encodeURI(sub)).length;
 				var savings = (bytes * (count - 1)) - count - 2;
 				
-				if (savings > best_savings || (savings == best_savings && count < best_count)) {
+				if (savings > best_savings || (savings === best_savings && count < best_count)) {
 					best_savings = savings;
 					best_count = count;
 					best = sub;
