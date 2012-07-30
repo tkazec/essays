@@ -22,9 +22,36 @@ Selects a free character, then analyzes the code using the previously explained 
 	}
 
 ## 3. Wrap up
+Now that the code is fully crushed, it just needs to be packaged up. First, we get the least used type of quote to minimize escaping in the output string:
 
+	var quote = code.split("'").length < code.split('"').length ? "'" : '"';
 
-## Unpacking
+Then we go ahead and escape the crushed code.
+
+	code = code.replace(/[\r\n\\]/g, "\\$&").replace(RegExp(quote, "g"), "\\" + quote);
+
+Next, we need a template for the output. There are multiple ways to do this, but the most readable is with an actual function:
+
+	var out = function () {
+		f="{code}";
+		for(i in g="{used}")
+			e=f.split(g[i]),
+			f=e.join(e.pop());
+		eval(f)
+	};
+
+And finally, we take the template, convert it to a string, strip out the bad stuff, and add in the final strings.
+
+	return out.toString()
+		.replace(/.+\{((?:.|\s)+)\}/, "$1")
+		.replace(/[\t\r\n]/g, "")
+		.replace(/"/g, quote)
+		.split("{used}").join(used)
+		.split("{code}").join(code);
+
+Congratulations! You've created a JavaScript crusher. Take a look at the [final code](crush.js).
+
+## Epilogue: Unpacking
 This is where it all comes together (or apart?).
 
 The bootstrap loops through each crush character, recursively unpacking the code. It simply splits the crushed code on every occurrence of the crush character, then **pops the last substring from the array**. This substring contains the original code from that crushing pass. Then, it just joins the array back up by the original code. This process is then repeated until the crush characters have been processed and the code is fully unpacked.
