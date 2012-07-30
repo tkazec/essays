@@ -23,4 +23,4 @@ You are happy.
 
 *Fortunately it seems that buttons can contain block-level content, like anchors can in HTML5.*
 
-*This research was prompted by some discussion in a [Bootstrap pull request](https://github.com/twitter/bootstrap/pull/1447) and then attempts to solve the problem in some personal projects. I have not succeeded. If anyone knows of a good solution, you get +9001 internets and the knowledge that you may have prevented a murderous rampage.*
+*This research was prompted by some discussion in a Bootstrap [pull request](https://github.com/twitter/bootstrap/pull/1447) and then attempts to solve the problem in some personal projects. I have not succeeded. If anyone knows of a good solution, you get +9001 internets and the knowledge that you may have prevented a murderous rampage.*
