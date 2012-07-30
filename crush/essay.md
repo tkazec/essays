@@ -10,9 +10,19 @@ Looking over the the competition, I noticed a trend: many were using crushers, o
 
 ## 1. Analyze
 
+
 ## 2. Crush
+This part is relatively simple. One thing to note is that the algorithm is recursive: Each pass, it analyzes the current code and crushes a single reocurring substring, and then repeats the process on the result until there are no more worthwhile replacements.
+
+Selects a free character, then analyzes the code using the previously explained search function. Uses split and join to safely replace every occurance of the selected substring with the selected character. Then, adds one final occurance of the character and the original substring to the end of the result. Record that the character was used. Repeats until no good substrings are left to crush.
+
+	while ((chr = free.pop()) && (substr = search(code))) {
+		code = code.split(substr).join(chr) + chr + substr;
+		used = chr + used;
+	}
 
 ## 3. Wrap up
+
 
 ## Unpacking
 This is where it all comes together (or apart?).
