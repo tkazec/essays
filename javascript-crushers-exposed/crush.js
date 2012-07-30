@@ -62,8 +62,11 @@ var crush = function (code) {
 	
 	
 	/*** Step 3: Wrap up ***/
-	// Get the most popular type of quote to minimize escaping in the output string
+	// Get the least used type of quote to minimize escaping in the output string
 	var quote = code.split("'").length < code.split('"').length ? "'" : '"';
+	
+	// Escape the crushed code
+	code = code.replace(/[\r\n\\]/g, "\\$&").replace(RegExp(quote, "g"), "\\" + quote);
 	
 	// Create the output template with actual code
 	var out = function () {
@@ -73,9 +76,6 @@ var crush = function (code) {
 			f=e.join(e.pop());
 		eval(f)
 	};
-	
-	// Properly escape the crushed code
-	code = code.replace(/[\r\n\\]/g, "\\$&").replace(RegExp(quote, "g"), "\\" + quote);
 	
 	// Convert the output template to a string, replace bits accordingly, and return the final code
 	return out.toString()
