@@ -12,9 +12,9 @@ Looking over the the competition, I noticed a trend: many were using crushers, o
 
 
 ## 2. Crush
-This part is relatively simple. One thing to note is that the algorithm is recursive: Each pass, it analyzes the current code and crushes a single reocurring substring, and then repeats the process on the result until there are no more worthwhile replacements.
+This part is relatively simple. One thing to note is that the algorithm is recursive: Each pass, it analyzes the current code and crushes a single recurring substring, and then repeats the process on the result until there are no more worthwhile replacements.
 
-Selects a free character, then analyzes the code using the previously explained search function. Uses split and join to safely replace every occurance of the selected substring with the selected character. Then, adds one final occurance of the character and the original substring to the end of the result. Record that the character was used. Repeats until no good substrings are left to crush.
+Selects a free character, then analyzes the code using the previously explained search function. Uses split and join to safely replace every occurrence of the selected substring with the selected character. Then, adds one final occurrence of the character and the original substring to the end of the result. Record that the character was used. Repeats until no good substrings are left to crush.
 
 	while ((chr = free.pop()) && (substr = search(code))) {
 		code = code.split(substr).join(chr) + chr + substr;
@@ -27,6 +27,6 @@ Selects a free character, then analyzes the code using the previously explained 
 ## Unpacking
 This is where it all comes together (or apart?).
 
-The bootstrap loops through each crush character, recursively unpacking the code. It simply splits the crushed code on every occurance of the crush character, then **pops the last substring from the array**. This substring contains the original code from that crushing pass. Then, it just joins the array back up by the original code. This process is then repeated until the crush characters have been processed and the code is fully unpacked.
+The bootstrap loops through each crush character, recursively unpacking the code. It simply splits the crushed code on every occurrence of the crush character, then **pops the last substring from the array**. This substring contains the original code from that crushing pass. Then, it just joins the array back up by the original code. This process is then repeated until the crush characters have been processed and the code is fully unpacked.
 
 The bootstrap then evaluates the code, and the process is complete!
