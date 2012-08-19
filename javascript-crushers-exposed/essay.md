@@ -30,7 +30,7 @@ Then we go ahead and escape the crushed code.
 
 	code = code.replace(/[\r\n\\]/g, "\\$&").replace(RegExp(quote, "g"), "\\" + quote);
 
-Next, we need a template for the output. There are multiple ways to do this, but the most readable is with an actual function:
+Next, we need a template for the output. There are other ways to do this, but the most readable is with an actual function:
 
 	var out = function () {
 		f="{code}";
@@ -56,4 +56,4 @@ This is where it all comes together (or apart?).
 
 The bootstrap loops through each crush character, recursively unpacking the code. It simply splits the crushed code on every occurrence of the crush character, then **pops the last substring from the array**. This substring contains the original code from that crushing pass. Then, it just joins the array back up by the original code. This process is then repeated until the crush characters have been processed and the code is fully unpacked.
 
-The bootstrap then evaluates the code, and the process is complete!
+The code is then evaluated, and the process is complete!
