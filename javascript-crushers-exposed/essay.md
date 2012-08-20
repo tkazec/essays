@@ -57,3 +57,20 @@ This is where it all comes together (or apart?).
 The bootstrap loops through each crush character, recursively unpacking the code. It simply splits the crushed code on every occurrence of the crush character, then **pops the last substring from the array**. This substring contains the original code from that crushing pass. Then, it just joins the array back up by the original code. This process is then repeated until the crush characters have been processed and the code is fully unpacked.
 
 The code is then evaluated, and the process is complete!
+
+<h2>Demo</h2>
+<div class="row">
+	<div class="span3">
+		<div class="well">
+			<p>Try it out! (Large scripts may take a while.)</p>
+			<p><span id="demo-oldsize">0</span>B / <span id="demo-newsize">0</span>B = <span id="demo-pctsize">0.0</span>%</p>
+			<button class="btn btn-block btn-primary" id="demo-run">Crush</button>
+		</div>
+	</div>
+	<div class="span7">
+		<textarea class="span7" id="demo-txt" style="height:130px"></textarea>
+	</div>
+</div>
+
+<script src="crush.js"></script>
+<script src="crush-demo.js"></script>
