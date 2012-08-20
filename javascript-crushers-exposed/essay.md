@@ -10,6 +10,55 @@ Looking over the the competition, I noticed a trend: many were using crushers, o
 
 ## 1. Analyze
 
+The very first thing we do is get a list of all safe ASCII characters that aren't already used in the code. We'll use these later to replace substrings.
+
+	for (var i = 1; i < 127; ++i) {
+		var chr = String.fromCharCode(i);
+		
+		if (!/[\r\n'"\\]/.test(chr) && !~code.indexOf(chr)) {
+			free.push(chr);
+		}
+	}
+
+Then there's a function that searches the code for the best possible replacement. We use it later in the crush process, but it's the core of the analyzer.
+
+	var search = function (input) {
+		var best = false;
+		var strs = {};
+		var best_savings = 0;
+		var best_count = 0;
+		
+		...
+		
+		return best;
+	};
+
+The first step is to find every substring ever.
+
+	...
+
+Once we have the substrings, it's just a simple matter of finding the best. To do that, we loop through all of them...
+
+	for (var sub in strs) {
+		var count = strs[sub];
+		
+		if (count > 1) {
+			...
+		}
+	}
+
+The main indicator of quality is the bytes saved, so we calculate that. Since there's no native way to check the byte length of a string in JavaScript, we use a simple trick that expands Unicode characters.
+
+	var bytes = unescape(encodeURI(sub)).length;
+	var savings = (bytes * (count - 1)) - count - 2;
+
+Finally, if we did find the best so far, record it.
+
+	if (savings > best_savings || (savings === best_savings && count < best_count)) {
+		best_savings = savings;
+		best_count = count;
+		best = sub;
+	}
 
 ## 2. Crush
 This part is relatively simple. One thing to note is that the algorithm is recursive: Each pass, it analyzes the current code and crushes a single recurring substring, and then repeats the process on the result until there are no more worthwhile replacements.
@@ -58,17 +107,17 @@ The bootstrap loops through each crush character, recursively unpacking the code
 
 The code is then evaluated, and the process is complete!
 
-<h2>Demo</h2>
+## Demo
 <div class="row">
 	<div class="span3">
-		<div class="well">
+		<div class="well" style="margin-bottom:0">
 			<p>Try it out! (Large scripts may take a while.)</p>
 			<p><span id="demo-oldsize">0</span>B / <span id="demo-newsize">0</span>B = <span id="demo-pctsize">0.0</span>%</p>
 			<button class="btn btn-block btn-primary" id="demo-run">Crush</button>
 		</div>
 	</div>
 	<div class="span7">
-		<textarea class="span7" id="demo-txt" style="height:130px"></textarea>
+		<textarea class="span7" id="demo-txt" style="height:130px; margin-bottom:0"></textarea>
 	</div>
 </div>
 
