@@ -29,7 +29,7 @@ I'm pretty happy with the way it all turned out. Some more interactivity (enter 
 Check out the code on [GitHub](https://github.com/tkazec/demos). Thanks for reading!
 
 <div class="images">
-	<img src="screenshot-1.png" height="150" alt="">
-	<img src="screenshot-2.png" height="150" alt="">
-	<img src="screenshot-3.png" height="150" alt="">
+	<img src="screenshot-1.png" style="height:150px" alt="">
+	<img src="screenshot-2.png" style="height:150px" alt="">
+	<img src="screenshot-3.png" style="height:150px" alt="">
 </div>
