@@ -3,11 +3,11 @@ var crush = function (code) {
 	var sub_len_max = code.length / 2;
 	var free = [];
 	
-	// Get all safe ASCII characters that aren't already used in the code.
+	// Get a list of safe ASCII characters that don't already appear in the code.
 	for (var i = 1; i < 127; ++i) {
 		var chr = String.fromCharCode(i);
 		
-		if (!/[\r\n'"\\]/.test(chr) && !~code.indexOf(chr)) {
+		if (!/[\r\n'"\\]/.test(chr) && code.indexOf(chr) === -1) {
 			free.push(chr);
 		}
 	}

@@ -1,4 +1,4 @@
-A few years ago, back when JavaScript use was first exploding and everyone was realizing that speed is an issue, there were two dominant categories of compression tools.
+A few years back, when JavaScript use was first exploding and people were realizing that speed is an issue, there were two dominant categories of compression tools.
 
 The first, minifiers like Closure Compiler, are still commonly used today. They start with simply stripping whitespace, and may shorten variables and even change code—often resulting in size reductions of 50%, without affecting evaluation.
 
@@ -10,12 +10,12 @@ Looking over the the competition, I noticed a trend: many were using crushers, o
 
 ## 1. Analyze
 
-The very first thing to do is get a list of safe ASCII characters that aren't already used in the code. We'll use these later when replacing substrings.
+The very first step is get a list of safe ASCII characters that don't already appear in the code. We'll use these later when replacing substrings.
 
 	for (var i = 1; i < 127; ++i) {
 		var chr = String.fromCharCode(i);
 		
-		if (!/[\r\n'"\\]/.test(chr) && !~code.indexOf(chr)) {
+		if (!/[\r\n'"\\]/.test(chr) && code.indexOf(chr) === -1) {
 			free.push(chr);
 		}
 	}
@@ -92,7 +92,7 @@ This part is relatively simple. Each pass, it analyzes the current code and crus
 For future unpacking, we leave behind a copy of the original substring along with the replacement character.
 
 ## 3. Wrap up
-Now that the code is fully crushed, it just needs to be packaged up. First, we get the least used type of quote to minimize escaping in the output string:
+Now that the code is fully crushed, it just needs to be packaged up. To start, we get the least used type of quote to minimize escaping in the output string:
 
 	var quote = code.split("'").length < code.split('"').length ? "'" : '"';
 
@@ -119,12 +119,12 @@ And finally, we take the template, convert it to a string, strip out the bad stu
 		.split("{used}").join(used)
 		.split("{code}").join(code);
 
-Congratulations! You've created a JavaScript crusher. Take a look at the [final code](crush.js).
+Congratulations! You've created a JavaScript crusher. Take a look at the [final code](crush.js). :)
 
 ## Epilogue: Unpacking
 This is where it all comes together (or apart?).
 
-The bootstrap loops through each crush character, recursively unpacking the code. It simply splits the crushed code on every occurrence of the crush character, then **pops the last substring from the array**. This substring contains the original code from that crushing pass. Then, it just joins the array back up by the original code. This process is then repeated until the crush characters have been processed and the code is fully unpacked.
+The bootstrap loops through the replacement characters, recursively unpacking the code. Each pass, it splits the crushed string on every occurance of the character, then pops the last element—which, as added during step 2, is the original substring. Then it's a simple matter of joining the array back up by that substring. This goes on until the crush characters have all been processed and the code is fully unpacked.
 
 The code is then evaluated, and the process is complete!
 
