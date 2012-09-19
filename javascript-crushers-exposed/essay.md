@@ -130,15 +130,15 @@ The code is then evaluated, and the process is complete!
 
 ## Demo
 <div class="row">
-	<div class="span3">
+	<div class="span4">
 		<div class="well" style="margin-bottom:0">
 			<p>Try it out! (Large scripts may take a while.)</p>
 			<p><span id="demo-oldsize">0</span>B / <span id="demo-newsize">0</span>B = <span id="demo-pctsize">0.0</span>%</p>
 			<button class="btn btn-block btn-primary" id="demo-run">Crush</button>
 		</div>
 	</div>
-	<div class="span7">
-		<textarea class="span7" id="demo-txt" style="height:130px; margin-bottom:0"></textarea>
+	<div class="span8">
+		<textarea class="span8" id="demo-txt" style="height:140px; margin-bottom:0"></textarea>
 	</div>
 </div>
 
