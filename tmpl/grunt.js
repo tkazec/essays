@@ -1,19 +1,18 @@
 module.exports = function (grunt) { "use strict";
 
 /*** setup ***/
-var jade = require("jade"),
-	marked = require("marked");
+var jade = require("jade");
+var marked = require("marked");
 
 grunt.initConfig({
-	clean: {
-		folder: "dist"
-	},
+	clean: ["dist"],
 	less: {
 		all: {
-			src: "tmpl/global.less",
-			dest: "dist/global.css",
 			options: {
 				compress: true
+			},
+			files: {
+				"dist/global.css": "tmpl/global.less"
 			}
 		}
 	},
@@ -23,8 +22,8 @@ grunt.initConfig({
 	}
 });
 
-grunt.loadNpmTasks("grunt-clean");
-grunt.loadNpmTasks("grunt-less");
+grunt.loadNpmTasks("grunt-contrib-clean");
+grunt.loadNpmTasks("grunt-contrib-less");
 
 grunt.file.setBase("..");
 
