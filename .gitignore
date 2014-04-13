@@ -1,2 +1,2 @@
-/tmpl/node_modules
-/dist
+dist/
+tmpl/node_modules/
