@@ -8,10 +8,11 @@ block content
 	h1 Essays 
 		small by 
 			a(href="https://twitter.com/tkazec") @tkazec
-	dl.dl-horizontal
+	ul.list-unstyled
 		each essay in list
-			dt #{essay.date}
-			dd: a(href="#{essay.path}") #{essay.title}
+			li
+				a(href="#{essay.path}") #{essay.title}
+				span.text-muted.pull-right #{essay.date}
 	hr
 	p
 		| © 2012 
