@@ -5,13 +5,14 @@ block head
 	link(rel="stylesheet", href="../global.css")
 
 block content
-	tweet = "text=" + encodeURIComponent(title) + "&url=" + encodeURIComponent("http://essays.tkaz.ec/" + name) + "&via=tkazec"
-	
 	h1 #{title}
-	!{html}
+	
+	| !{html}
+	
 	hr
+	
 	p#essay-info
-		| Published on #{day} by 
+		| Published on #{dateStr} by 
 		a(href="http://tkaz.ec") Teddy Cross
 		| .
 		br
@@ -24,7 +25,8 @@ block content
 			a(href="#{googleplus}", target="_blank") Google+
 			|  § 
 		| Chirp around on 
-		a(href="https://twitter.com/intent/tweet?#{tweet}", target="_blank") Twitter
+		a(href="https://twitter.com/intent/tweet?text=" + encodeURIComponent(title) + "&url=" + encodeURIComponent("http://essays.tkaz.ec/" + path) + "&via=tkazec", target="_blank") Twitter
+	
 	p#essay-more
 		| › 
 		a(href="..") more essays

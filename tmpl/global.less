@@ -1,42 +1,35 @@
 /*** setup ***/
 @import "bootstrap/bootstrap";
-@import "bootstrap/responsive-767px-max";
 
-@linkColorHover: spin(@linkColor, -60);
+@link-hover-color: spin(@link-color, -60);
 
-@sansFontFamily: "Cantarell", sans-serif;
+@font-family-sans-serif: "Cantarell", sans-serif;
 
-@headingsFontFamily: "Open Sans", sans-serif;
-@headingsFontWeight: 600;
+@headings-font-family: "Open Sans", sans-serif;
+@headings-font-weight: 600;
 
-@horizontalComponentOffset: 140px;
-
-@gridColumnWidth: @gridColumnWidth768;
+@media (min-width: @screen-sm-min) {
+	.container {
+		max-width: @container-sm;
+	}
+}
 
 
 /*** global ***/
-h2, h3, h4, h5, h6 {
-	margin: 0;
-}
-
-h1 > small {
-	font-size: 18px;
-}
-
 textarea {
-	font-family: @monoFontFamily;
+	font-family: @font-family-monospace;
 }
 
 .images {
-	margin: @baseLineHeight / 2 0;
+	margin: @line-height-computed / 2 0;
 	text-align: center;
 	
 	img {
-		.img-polaroid;
+		.img-thumbnail;
 	}
 	
 	img + img, a + a {
-		margin-left: @baseLineHeight;
+		margin-left: @line-height-computed;
 	}
 }
 
@@ -48,6 +41,6 @@ textarea {
 }
 
 #essay-more {
-	margin-bottom: @baseLineHeight;
+	margin-bottom: @line-height-computed;
 	text-align: center;
 }

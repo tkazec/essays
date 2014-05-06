@@ -2,13 +2,18 @@
 	"name": "ec.tkaz.essays",
 	"version": "0.0.0",
 	"dependencies": {
-		"grunt-contrib-clean": "~0.2.0",
-		"grunt-contrib-less": "~0.2.2",
-		"jade": "~0.27.4",
-		"marked": "~0.2.5"
+		"gulp": "~3.6.2",
+		"gulp-clean": "~0.2.4",
+		"gulp-jade": "~0.5.0",
+		"gulp-less": "~1.2.3",
+		"gulp-markdown": "~0.1.2",
+		"gulp-replace": "~0.2.0",
+		"highland": "~1.24.0",
+		"moment": "~2.6.0"
 	},
 	"engines": {
-		"node": "~0.8"
+		"node": "~0.10.26",
+		"npm": "~1.4.6"
 	},
 	"private": true
 }
