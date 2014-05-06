@@ -19,7 +19,7 @@ var essays = gulp.src("../!(tmpl|dist)/meta.json")
 		
 		return obj;
 	})
-	.where(process.argv[2] ? { draft: undefined } : {})
+	.where(process.env.GAID ? { draft: undefined } : {})
 	.collect()
 	.invoke("sort", [function (a, b) {
 		return a.date < b.date;
@@ -43,7 +43,7 @@ gulp.task("essays", ["clean"], function () {
 			.pipe(markdown())
 			.pipe(hl());
 	}).flatten().zip(essays.fork()).map(function (val) {
-		val[1].gaid = process.argv[2];
+		val[1].gaid = process.env.GAID;
 		val[1].html = val[0].contents.toString("utf8");
 		
 		return gulp.src("./essay.jade")
@@ -60,7 +60,7 @@ gulp.task("index", function () {
 	return essays.fork().collect().map(function (arr) {
 		var locals = {
 			list: arr,
-			gaid: process.argv[2]
+			gaid: process.env.GAID
 		};
 		
 		return gulp.src("./index.jade")
