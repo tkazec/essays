@@ -1,4 +1,4 @@
-Contains various essays and their accompanying assets. Originally meant as a backup for essays posted on Google+; now includes a full build system using Grunt, Jade, Markdown, Bootstrap, LESS, and of course Node w/ NPM. http://essays.tkaz.ec
+Contains various essays and their accompanying assets. Originally meant as a backup for essays posted on Google+; now includes a full build system using Gulp, Jade, Markdown, Bootstrap, LESS, and of course Node w/ NPM. http://essays.tkaz.ec
 
 ---
 
