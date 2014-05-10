@@ -6,19 +6,23 @@ block head
 
 block content
 	h1 Essays 
-		small by 
+		small
+			| by 
 			a(href="https://twitter.com/tkazec") @tkazec
+	
 	ul.list-unstyled
 		each essay in list
 			li
 				a(href="#{essay.path}") #{essay.title}
 				span.text-muted.pull-right #{essay.date}
+	
 	hr
+	
 	p
-		| © 2012 
+		| © 2014 
 		a(href="http://tkaz.ec") Teddy Cross
 		| , shared under the 
-		a(href="http://creativecommons.org/licenses/by/3.0/") CC BY 3.0
+		a(href="http://creativecommons.org/licenses/by/3.0/") CC BY-SA 4.0 license
 		| . Sources released 
 		a(href="https://github.com/tkazec/essays") on GitHub
 		| .
