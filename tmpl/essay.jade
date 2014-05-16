@@ -1,17 +1,15 @@
 extends global
 
 block head
-	title #{title}
+	title #{title} | At Home Among Strangers
 	link(rel="stylesheet", href="../global.css")
 
 block content
 	h1
 		| #{title} 
-		small
-			| by 
-			a(href="https://twitter.com/tkazec") @tkazec
+		small by a stranger among his own
 	
-	| !{html}
+	article !{html}
 	
 	hr
 	

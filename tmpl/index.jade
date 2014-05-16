@@ -1,21 +1,19 @@
 extends global
 
 block head
-	title Essays
+	title At Home Among Strangers
 	link(rel="stylesheet", href="global.css")
 
 block content
 	h1
-		| Essays 
-		small
-			| by 
-			a(href="https://twitter.com/tkazec") @tkazec
+		| At Home Among Strangers
+		small by a stranger among his own
 	
 	ul.list-unstyled
 		each essay in list
 			li
 				a(href="#{essay.path}") #{essay.title}
-				span.text-muted.pull-right #{essay.date}
+				span.text-muted.pull-right.hidden-xs #{essay.date}
 	
 	hr
 	

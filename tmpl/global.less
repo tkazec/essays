@@ -9,8 +9,7 @@
 
 @font-size-base: 16px;
 
-@headings-font-family: "Open Sans", sans-serif;
-@headings-font-weight: 600;
+@headings-font-weight: 400;
 
 @thumbnail-border-radius: 0;
 
@@ -24,8 +23,16 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Global
 ///////////////////////////////////////////////////////////////////////////////
-p {
+article > p {
 	text-align: justify;
+}
+
+body {
+	text-rendering: optimizelegibility;
+}
+
+h1 > small {
+	display: block;
 }
 
 textarea {
@@ -37,7 +44,7 @@ textarea {
 	text-align: center;
 	
 	img {
-		.img-thumbnail;
+		.img-thumbnail();
 	}
 	
 	img + img, a + a {
@@ -45,8 +52,9 @@ textarea {
 	}
 }
 
-.list-unstyled {
+.list-unstyled > li {
 	line-height: @line-height-computed * 1.5;
+	.text-overflow();
 }
 
 .thumbnail {

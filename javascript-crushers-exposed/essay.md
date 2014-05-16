@@ -1,3 +1,5 @@
+*How to write a JavaScript crusher, in 3 easy steps.*
+
 A few years back, when JavaScript use was first exploding and people were realizing that speed is an issue, there were two dominant categories of compression tools.
 
 The first, minifiers like Closure Compiler, are still commonly used today. They start with simply stripping whitespace, and may shorten variables and even change code—often resulting in size reductions of 50%, without affecting evaluation.
