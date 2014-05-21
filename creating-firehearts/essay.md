@@ -24,9 +24,7 @@ That was all a month or so ago, now back to the present. A couple days ago, I fo
 Once I realized how much available space there suddenly was, I decided to add some interactivity, something I'd been wanting to do but previously had no room for. Adding click-to-burst was simple, as it only required adding an onclick handler and duplicating the random burst code (crushers love repetition). Adding the meta-heart sequence was actually rather complicated: not only was the shape and look hard to figure out, but the code was pretty tricky to reduce.
 
 ### Result
-I'm pretty happy with the way it all turned out. Some more interactivity (enter some text to display a sequence? record custom sequences?) would have been nice, but clearly impossible with the 1k limit. Maybe for something else...
-
-Check out the code on [GitHub](https://github.com/tkazec/demos). Thanks for reading!
+Check out the code on [GitHub](https://github.com/tkazec/demos)! I'm pretty happy with the way it all turned out. Some more interactivity (enter some text to display a sequence? record custom sequences?) would have been nice, but clearly impossible with the 1k limit. Maybe for something else...
 
 <div class="images">
 	<img src="screenshot-1.png" style="height:150px" alt="">
