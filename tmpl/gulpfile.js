@@ -15,8 +15,14 @@ var essays = gulp.src("../!(tmpl|dist)/meta.json")
 		
 		obj.path = val.path.replace(/.+\/(.+)\/meta.json/, "$1");
 		obj.dateStr = moment.utc(obj.date).format("dddd, MMMM Do, YYYY");
-		obj.hackernews = obj.hackernews ? "http://news.ycombinator.com/item?id=" + obj.hackernews : null;
-		obj.googleplus = obj.googleplus ? "https://plus.google.com/" + obj.googleplus : null;
+		
+		obj.urls.gp = "https://plus.google.com/" + obj.urls.gp;
+		obj.urls.hn = "https://news.ycombinator.com/item?id=" + obj.urls.hn;
+		obj.urls.rd = "http://www.reddit.com/" + obj.urls.rd;
+		obj.urls.tw = "https://twitter.com/intent/tweet" +
+			"?text=" + encodeURIComponent(obj.name) +
+			"&url=" + encodeURIComponent("http://essays.tkaz.ec/" + obj.path) +
+			"&via=tkazec";
 		
 		return obj;
 	})
@@ -79,9 +85,11 @@ gulp.task("index", function () {
 gulp.task("readme", function () {
 	return essays.fork().collect().map(function (arr) {
 		arr = arr.map(function (val) {
-			return "* " + val.date + " \"[" + val.title + "](http://essays.tkaz.ec/" + val.path + ")\"" +
-				(val.hackernews ? " - [Hacker News](" + val.hackernews + ")" : "") +
-				(val.googleplus ? " - [Google+](" + val.googleplus + ")" : "");
+			return "* " + val.date + " \"[" + val.name + "](http://essays.tkaz.ec/" + val.path + ")\"" +
+				" - [Google+](" + val.urls.gp + ")" +
+				" - [Hacker News](" + val.urls.hn + ")" +
+				" - [Reddit](" + val.urls.rd + ")" +
+				" - [Twitter](" + val.urls.tw + ")";
 		}).join("\n");
 		
 		return gulp.src("../README.md")

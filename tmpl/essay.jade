@@ -1,12 +1,12 @@
 extends global
 
 block head
-	title #{title} | At Home Among Strangers
+	title #{name} | At Home Among Strangers
 	link(rel="stylesheet", href="../global.css")
 
 block content
 	h1
-		| #{title} 
+		| #{name}
 		small by a stranger among his own
 	
 	article !{html}
@@ -18,16 +18,17 @@ block content
 		a(href="http://tkaz.ec") Teddy Cross
 		| .
 		br
-		if hackernews
-			| Hash out on 
-			a(href="#{hackernews}", target="_blank") Hacker News
-			|  § 
-		if googleplus
-			| Form ripples on 
-			a(href="#{googleplus}", target="_blank") Google+
-			|  § 
-		| Chirp around on 
-		a(href="https://twitter.com/intent/tweet?text=" + encodeURIComponent(title) + "&url=" + encodeURIComponent("http://essays.tkaz.ec/" + path) + "&via=tkazec", target="_blank") Twitter
+		| Discuss on 
+		a(href=urls.hn, target="_blank") Hacker News
+		|  and 
+		a(href=urls.rd, target="_blank") Reddit
+		| .
+		br
+		| Share on 
+		a(href=urls.tw, target="_blank") Twitter
+		|  and 
+		a(href=urls.gp, target="_blank") Google+
+		| .
 	
 	p#essay-more
 		| › 
