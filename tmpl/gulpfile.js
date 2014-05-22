@@ -1,5 +1,6 @@
 var clean = require("gulp-clean");
 var gulp = require("gulp");
+var highlight = require("highlight.js");
 var hl = require("highland");
 var jade = require("gulp-jade");
 var less = require("gulp-less");
@@ -40,7 +41,9 @@ gulp.task("style", function () {
 gulp.task("essays", ["clean"], function () {
 	return essays.fork().map(function (val) {
 		return gulp.src("../" + val.path + "/essay.md")
-			.pipe(markdown())
+			.pipe(markdown({ highlight: function (code) {
+				return highlight.highlight(val.lang, code).value;
+			} }))
 			.pipe(hl());
 	}).flatten().zip(essays.fork()).map(function (val) {
 		val[1].gaid = process.env.GAID;

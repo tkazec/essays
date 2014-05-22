@@ -9,6 +9,7 @@
 		"gulp-markdown": "~0.1.2",
 		"gulp-replace": "~0.2.0",
 		"highland": "~1.24.0",
+		"highlight.js": "~8.0.0",
 		"moment": "~2.6.0"
 	},
 	"engines": {
