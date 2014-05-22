@@ -12,12 +12,12 @@ block content
 	ul.list-unstyled
 		each essay in list
 			li
-				a(href="#{essay.path}") #{essay.title}
+				a(href="#{essay.path}") #{essay.name}
 				span.text-muted.pull-right.hidden-xs #{essay.date}
 	
 	hr
 	
-	p
+	p#essay-info
 		| © 2014 
 		a(href="http://tkaz.ec") Teddy Cross
 		| , shared under the 

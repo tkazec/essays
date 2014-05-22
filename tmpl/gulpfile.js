@@ -85,7 +85,8 @@ gulp.task("index", function () {
 gulp.task("readme", function () {
 	return essays.fork().collect().map(function (arr) {
 		arr = arr.map(function (val) {
-			return "* " + val.date + " \"[" + val.name + "](http://essays.tkaz.ec/" + val.path + ")\"" +
+			return "* " + val.date +
+				" \"[" + val.name + "](http://essays.tkaz.ec/" + val.path + ")\"" +
 				" - [Google+](" + val.urls.gp + ")" +
 				" - [Hacker News](" + val.urls.hn + ")" +
 				" - [Reddit](" + val.urls.rd + ")" +
