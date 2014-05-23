@@ -1,4 +1,4 @@
-I originally created [essays.tkaz.ec](http://essays.tkaz.ec) as a means to preserve my Google+ "blog posts". (Turns out that was an even better idea than I originally realized!) With comments already on Hacker News, Google+, and Twitter, I only needed a simple static website. But of course, no existing solution really fit. (Even now, there’s nothing else that even comes close to what I want.)
+I originally created [essays.tkaz.ec](http://essays.tkaz.ec) as a means to preserve my Google+ “blog posts”. (Turns out that was an even better idea than I originally realized!) With comments already on Hacker News, Google+, and Twitter, I only needed a simple static website. But of course, no existing solution really fit. (Even now, there’s nothing else that even comes close to what I want.)
 
 Around the same time, [Grunt](http://gruntjs.com) became everyone’s new favorite thing. So of course I tried it out! But even then, I didn’t like the syntax. (I promptly came up with and forgot about an idea for a Grunt wrapper that didn’t require so much boilerplate.) But ultimately Grunt worked, so I let it be.
 
