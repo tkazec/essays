@@ -17,9 +17,7 @@ You proceed to ragequit your job, move to India, and become a monk.
 
 You are happy.
 
-<div class="images">
-	<img src="wat.jpg" alt="Wat">
-</div>
+<div class="thumbnail"><img src="wat.jpg" width="720" height="480"></div>
 
 *Fortunately it seems that buttons can contain block-level content, like anchors can in HTML5.*
 
