@@ -1,7 +1,7 @@
-My first project at [Buzzvil](http://www.buzzvil.com) was to develop a system to reliably render images at scale with PhantomJS. The result of my efforts was [Ghost Town](https://www.npmjs.org/package/ghost-town): simple queued & clustered PhantomJS processing in a tiny Node.js module.
+My first project at [Buzzvil](http://www.buzzvil.com) was to develop a system to reliably render images at scale with PhantomJS. The result of my efforts was [Ghost Town: simple queued & clustered PhantomJS processing](https://www.npmjs.org/package/ghost-town) in a tiny Node.js module.
 
 ## Problem
-PhantomJS not an easy library to work with. Crashing and freezing is common. High memory usage and slow startup time is expected, and scaling must be done manually. Ultimately, [PhantomJS](http://phantomjs.org) and [phantomjs-node](https://www.npmjs.org/package/phantom) are neglected projects, so these issues can be expected to remain indefinitely.
+PhantomJS is not an easy library to work with. Crashing and freezing is common. High memory usage and slow startup time is expected, and scaling must be done manually. Ultimately, [PhantomJS](http://phantomjs.org) and [phantomjs-node](https://www.npmjs.org/package/phantom) are neglected projects, so these issues can be expected to remain indefinitely.
 
 At Buzzvil, we needed the ability to reliably render a wide variety of images, with low latency and therefore high concurrency. No existing project effectively managed this, so I researched and designed a module that could both gracefully recover from crashes and scale automatically.
 
@@ -13,7 +13,7 @@ Each item is stored in the master’s queue until a worker is ready, and then as
 To prevent memory leaks, Ghost Town creates separate PhantomJS processes for each worker, and periodically relaunches them based on their number of pages created.
 
 ## Implementation
-Initializing Ghost Town is easy. (Several configuration options are available for tweaking the runtime and efficiency settings; see the [documentation](https://www.npmjs.org/package/phantom#readme) for details.) With no configuration:
+Initializing Ghost Town is easy. (Several configuration options are available for tweaking the runtime and efficiency settings; [see the documentation for details](https://www.npmjs.org/package/phantom#readme).) With no configuration:
 
 	var town = require("ghost-town")();
 
