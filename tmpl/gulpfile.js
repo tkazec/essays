@@ -1,5 +1,6 @@
 var clean = require("gulp-clean");
 var gulp = require("gulp");
+var gutil = require("gulp-util");
 var highlight = require("highlight.js");
 var hl = require("highland");
 var jade = require("gulp-jade");
@@ -7,6 +8,9 @@ var less = require("gulp-less");
 var markdown = require("gulp-markdown");
 var moment = require("moment");
 var replace = require("gulp-replace");
+var rss = require("rss");
+
+var ROOT = "http://essays.tkaz.ec/";
 
 var essays = gulp.src("../!(tmpl|dist)/meta.json")
 	.pipe(hl())
@@ -21,7 +25,7 @@ var essays = gulp.src("../!(tmpl|dist)/meta.json")
 		obj.urls.rd = "http://www.reddit.com/" + obj.urls.rd;
 		obj.urls.tw = "https://twitter.com/intent/tweet" +
 			"?text=" + encodeURIComponent(obj.name) +
-			"&url=" + encodeURIComponent("http://essays.tkaz.ec/" + obj.path) +
+			"&url=" + encodeURIComponent(ROOT + obj.path) +
 			"&via=tkazec";
 		
 		return obj;
@@ -45,6 +49,14 @@ gulp.task("style", function () {
 });
 
 gulp.task("essays", ["clean"], function () {
+	var feed = new rss({
+		title: "At Home Among Strangers",
+		description: "by a stranger among his own",
+		feed_url: ROOT + "feed.xml",
+		site_url: ROOT,
+		author: "Teddy Cross"
+	});
+	
 	return essays.fork().map(function (val) {
 		return gulp.src("../" + val.path + "/essay.md")
 			.pipe(markdown({ highlight: function (code) {
@@ -54,15 +66,28 @@ gulp.task("essays", ["clean"], function () {
 	}).flatten().zip(essays.fork()).map(function (val) {
 		val[1].gaid = process.env.GAID;
 		val[1].html = val[0].contents.toString("utf8");
+		val = val[1];
+		
+		feed.item({
+			title: val.name,
+			description: val.html,
+			url: ROOT + val.path,
+			date: moment.utc(val.date).toDate()
+		});
 		
 		return gulp.src("./essay.jade")
-			.pipe(jade({ locals: val[1] }))
+			.pipe(jade({ locals: val }))
 			.pipe(hl())
 			.concat(gulp
-				.src("../" + val[1].path + "/!(meta.json|essay.md)")
+				.src("../" + val.path + "/!(meta.json|essay.md)")
 				.pipe(hl()))
-			.pipe(gulp.dest("../dist/" + val[1].path));
-	}).flatten();
+			.pipe(gulp.dest("../dist/" + val.path));
+	}).collect().map(function () {
+		return new gutil.File({
+			path: "feed.xml",
+			contents: new Buffer(feed.xml())
+		});
+	}).pipe(gulp.dest("../dist"));
 });
 
 gulp.task("index", function () {
@@ -86,7 +111,7 @@ gulp.task("readme", function () {
 	return essays.fork().collect().map(function (arr) {
 		arr = arr.map(function (val) {
 			return "* " + val.date +
-				" \"[" + val.name + "](http://essays.tkaz.ec/" + val.path + ")\"" +
+				" \"[" + val.name + "](" + ROOT + val.path + ")\"" +
 				" - [Google+](" + val.urls.gp + ")" +
 				" - [Hacker News](" + val.urls.hn + ")" +
 				" - [Reddit](" + val.urls.rd + ")" +
