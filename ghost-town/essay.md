@@ -1,3 +1,5 @@
+*Cross-posted from the [Buzzvil Blog](http://blog.buzzvil.com/2014/05/29/scaling-phantomjs-ghost-town/).*
+
 My first project at [Buzzvil](http://www.buzzvil.com) was to develop a system to reliably render images at scale with PhantomJS. The result of my efforts was [Ghost Town: simple queued & clustered PhantomJS processing](https://www.npmjs.org/package/ghost-town) in a tiny Node.js module.
 
 ## Problem
@@ -41,7 +43,7 @@ The main master method is `town.queue(data, next)`, which queues an item with `d
 		}
 	}).listen(1337);
 
-The only worker hook is the `town!queue(page, data, next)` event. Ghost Town automatically manages everything, so `page` will always be a brand new PhantomJS page. All you need to do is configure the page, process the `data` passed from the master, and call `next(err, data)` to pass it back. At Buzzvil, we render HTML documents. Our worker configures the page (size, headers, content), and renders it to an image:
+The only worker hook is the `town!queue(page, data, next)` event. Ghost Town automatically manages everything, so `page` will always be a brand new PhantomJS page. All you need to do is configure the page, process the `data` passed from the master, and call `next(err, data)` to pass it back. At Buzzvil, we render HTML documents. Our worker configures the page (size, headers, content) and renders it to an image:
 
 	town.on("queue", function (page, data, next) {
 		// setup code
