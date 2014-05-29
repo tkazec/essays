@@ -111,11 +111,11 @@ gulp.task("readme", function () {
 	return essays.fork().collect().map(function (arr) {
 		arr = arr.map(function (val) {
 			return "* " + val.date +
-				" \"[" + val.name + "](" + ROOT + val.path + ")\"" +
-				" - [Google+](" + val.urls.gp + ")" +
+				" [" + val.name + "](" + ROOT + val.path + ")" +
+				" ([Google+](" + val.urls.gp + ")" +
 				" - [Hacker News](" + val.urls.hn + ")" +
 				" - [Reddit](" + val.urls.rd + ")" +
-				" - [Twitter](" + val.urls.tw + ")";
+				" - [Twitter](" + val.urls.tw + "))";
 		}).join("\n");
 		
 		return gulp.src("../README.md")
