@@ -1,0 +1,9 @@
+Respect is important in Korea, so much so that it's built into the language. Along with a variety of verb suffixes for each speech level, an involved system of honorific titles is almost always used. Nearly every family member in a tree has their own unique title, based on the age and gender of the speaker. Strangers and even friends are also often referred to by these titles, similar to "aunt" and "uncle" in English.
+
+The workplace is no different. Positions at normal Korean corporations are structured and hierarchical, and management is top-down and guided. This is reflected in the language, with each level having its own title. (The Sawon provides an excellent [overview of the variety of possibilities](http://thesawon.blogspot.kr/2014/01/korean-corporate-hierarchy-structure.html).) Co-workers are always referred to by their appropriate title plus the polite *nim* [님] suffix, and in some cases their name. Even generic titles exist, for ambiguous situations.
+
+Buzzvil, however, is not a normal Korean corporation. We have a nearly flat structure made up of flexible sets of teams, loosely managed by our two CEOs. For the most part, we simply refer to each other using our names plus *nim* [님]. The exceptions are (again) our two CEOs, who we refer to as *daepyonim* [대표님], meaning "representative". However, it's little more than a formality.
+
+While far better than the norm, we didn't think that was enough. So as an experiment, at [our recent internal hackathon](http://blog.buzzvil.com/2014/07/08/not-traditional-internal-hackathon-story/), we exclusively used self-chosen English nicknames. The results were clear, and we've now made it an official part of our culture.
+
+Ultimately, we hope to inspire a cultural trend. We're happy to hear of other companies adopting similar cultural ideas, such as [Starbucks Korea using English nicknames](http://www.koreatimes.co.kr/www/news/biz/2014/06/123_159256.html).
