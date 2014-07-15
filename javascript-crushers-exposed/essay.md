@@ -4,15 +4,15 @@ A few years back, when JavaScript use was first exploding and people were realiz
 
 The first, minifiers like Closure Compiler, are still commonly used today. They start with simply stripping whitespace, and may shorten variables and even change code—often resulting in size reductions of 50%, without affecting evaluation.
 
-The second are known as "crushers" or "packers", of which the leader was Dean Edward's [/packer/](http://dean.edwards.name/packer/). They analyze the code using algorithms, generating a string which is later unpacked and evaluated by a small piece of bootstrap code. Byte reduction can come close to standard tools like gzip, but at a huge initial performance hit, due to the recursive unpacking and evaluation. Because of this, with the advent of better minifiers and wider use of gzip, crushers eventually fell out of favor.
+The second are known as “crushers” or “packers”, of which the leader was Dean Edward’s [/packer/](http://dean.edwards.name/packer/). They analyze the code using algorithms, generating a string which is later unpacked and evaluated by a small piece of bootstrap code. Byte reduction can come close to standard tools like gzip, but at a huge initial performance hit, due to the recursive unpacking and evaluation. Because of this, with the advent of better minifiers and wider use of gzip, crushers eventually fell out of favor.
 
-Fast forward to the latest js1k, [Love '12](http://js1k.com/2012-love/), a JavaScript demo competition where entries are no more than 1k in size and often graphical in nature. (I entered [Firehearts](http://js1k.com/2012-love/demo/1252) and wrote about the [creation process](/creating-firehearts).)
+Fast forward to the latest js1k, [Love 2012](http://js1k.com/2012-love/), a JavaScript demo competition where entries are no more than 1k in size and often graphical in nature. (I entered [Firehearts](http://js1k.com/2012-love/demo/1252) and wrote about the [creation process](/creating-firehearts).)
 
-Looking over the the competition, I noticed a trend: many were using crushers, or were actually crushers themselves, since evaluation performance isn't an issue in demos. One in particular, [First Crush](http://js1k.com/2012-love/demo/1189), caught my eye, and I saw a golden opportunity—being only 1k, the process is fairly simple—to learn about and expose the black box. Enjoy :)
+Looking over the the competition, I noticed a trend: many were using crushers, or were actually crushers themselves, since evaluation performance isn’t an issue in demos. One in particular, [First Crush](http://js1k.com/2012-love/demo/1189), caught my eye, and I saw a golden opportunity—being only 1k, the process is fairly simple—to learn about and expose the black box. Enjoy :)
 
 ## 1. Analyze
 
-The very first step is get a list of safe ASCII characters that don't already appear in the code. We'll use these later when replacing substrings.
+The very first step is get a list of safe ASCII characters that don’t already appear in the code. We’ll use these later when replacing substrings.
 
 	for (var i = 1; i < 127; ++i) {
 		var chr = String.fromCharCode(i);
@@ -60,7 +60,7 @@ The first loop finds and counts all the substrings.
 		}
 	}
 
-Once we have the substrings, it's just a simple matter of finding the best. To do that, we loop through all of them...
+Once we have the substrings, it’s just a simple matter of finding the best. To do that, we loop through all of them...
 
 	for (var sub in strs) {
 		var count = strs[sub];
@@ -70,7 +70,7 @@ Once we have the substrings, it's just a simple matter of finding the best. To d
 		}
 	}
 
-The main indicator of quality is the bytes saved, so we calculate that. Since there's no native way to check the byte length of a string in JavaScript, we use a simple trick that expands Unicode characters.
+The main indicator of quality is the bytes saved, so we calculate that. Since there’s no native way to check the byte length of a string in JavaScript, we use a simple trick that expands Unicode characters.
 
 	var bytes = unescape(encodeURI(sub)).length;
 	var savings = (bytes * (count - 1)) - count - 2;
@@ -84,7 +84,7 @@ Finally, if we did find the best so far, record it.
 	}
 
 ## 2. Crush
-This part is relatively simple. Each pass, it analyzes the current code and crushes a single recurring substring, then repeats the process on the result until there are no more worthwhile replacements. In this way, it's recursive—after the first pass, we're operating on already partially crushed code.
+This part is relatively simple. Each pass, it analyzes the current code and crushes a single recurring substring, then repeats the process on the result until there are no more worthwhile replacements. In this way, it’s recursive—after the first pass, we’re operating on already partially crushed code.
 
 	while ((chr = free.pop()) && (substr = search())) {
 		code = code.split(substr).join(chr) + chr + substr;
@@ -121,12 +121,12 @@ And finally, we take the template, convert it to a string, strip out the bad stu
 		.split("{used}").join(used)
 		.split("{code}").join(code);
 
-Congratulations! You've created a JavaScript crusher. Take a look at the [final code](crush.js). :)
+Congratulations! You’ve created a JavaScript crusher. Take a look at the [final code](crush.js). :)
 
 ## Epilogue: Unpacking
 This is where it all comes together (or apart?).
 
-The bootstrap loops through the replacement characters, recursively unpacking the code. Each pass, it splits the crushed string on every occurance of the character, then pops the last element—which, as added during step 2, is the original substring. Then it's a simple matter of joining the array back up by that substring. This goes on until the crush characters have all been processed and the code is fully unpacked.
+The bootstrap loops through the replacement characters, recursively unpacking the code. Each pass, it splits the crushed string on every occurance of the character, then pops the last element—which, as added during step 2, is the original substring. Then it’s a simple matter of joining the array back up by that substring. This goes on until the crush characters have all been processed and the code is fully unpacked.
 
 The code is then evaluated, and the process is complete!
 

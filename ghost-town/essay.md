@@ -1,4 +1,4 @@
-*Cross-posted from the [Buzzvil Blog](http://blog.buzzvil.com/2014/05/29/scaling-phantomjs-ghost-town/).*
+*Cross-posted from the [Buzzvil Blog: Scaling PhantomJS With Ghost Town](http://blog.buzzvil.com/2014/05/29/scaling-phantomjs-ghost-town/).*
 
 My first project at [Buzzvil](http://www.buzzvil.com) was to develop a system to reliably render images at scale with PhantomJS. The result of my efforts was [Ghost Town: simple queued & clustered PhantomJS processing](https://www.npmjs.org/package/ghost-town) in a tiny Node.js module.
 
