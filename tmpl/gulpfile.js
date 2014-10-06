@@ -53,8 +53,7 @@ gulp.task("essays", ["clean"], function () {
 		title: "At Home Among Strangers",
 		description: "by a stranger among his own",
 		feed_url: ROOT + "feed.xml",
-		site_url: ROOT,
-		author: "Teddy Cross"
+		site_url: ROOT
 	});
 	
 	return essays.fork().map(function (val) {
@@ -72,6 +71,7 @@ gulp.task("essays", ["clean"], function () {
 			title: val.name,
 			description: val.html,
 			url: ROOT + val.path,
+			author: "Teddy Cross",
 			date: moment.utc(val.date).toDate()
 		});
 		
@@ -102,9 +102,8 @@ gulp.task("index", function () {
 			.pipe(hl())
 			.concat(gulp
 				.src("./favicon.ico")
-				.pipe(hl()))
-			.pipe(gulp.dest("../dist"));
-	}).flatten();
+				.pipe(hl()));
+	}).flatten().pipe(gulp.dest("../dist"));
 });
 
 gulp.task("readme", function () {
@@ -120,8 +119,8 @@ gulp.task("readme", function () {
 		
 		return gulp.src("../README.md")
 			.pipe(replace(/---(?:.|\s)+---/, "---\n\n" + arr + "\n\n---"))
-			.pipe(gulp.dest(".."));
-	}).flatten();
+			.pipe(hl());
+	}).flatten().pipe(gulp.dest(".."));
 });
 
 gulp.task("watch", function () {
